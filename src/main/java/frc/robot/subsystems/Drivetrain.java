@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 public class Drivetrain extends SubsystemBase {
@@ -20,6 +21,10 @@ public class Drivetrain extends SubsystemBase {
 
   //drivetrain type
   MecanumDrive drive;
+
+  //sensors
+  Gyro gyro;
+
   
     /** Creates a new Drivetrain. */
     public Drivetrain() {
@@ -42,6 +47,10 @@ public class Drivetrain extends SubsystemBase {
       drive.driveCartesian(ySpeed, xSpeed, zRotation);
     }
 
+    public void rotateFifteen(double zRotation)
+    {
+      drive.driveCartesian(0,0,zRotation);
+    }
 
     @Override
     public void periodic() {
