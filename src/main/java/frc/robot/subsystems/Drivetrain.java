@@ -6,14 +6,17 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public class Drivetrain extends SubsystemBase {
 
 
-  //drivetrain speed controllers    
+  //drivetrain speed controllers   
+   
   Spark leftFrontMotor;
   Spark rightFrontMotor;
   Spark leftRearMotor;
@@ -39,7 +42,12 @@ public class Drivetrain extends SubsystemBase {
     
       drive = new MecanumDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
       
- 
+      ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
+
+      //Shuffleboard data
+      Shuffleboard.getTab("Telemetry").add(gyro);
+    }
     }
   
     public void driveWithJoysticks(double ySpeed, double xSpeed, double zRotation)
@@ -59,5 +67,12 @@ public class Drivetrain extends SubsystemBase {
   
     public void stop() {
       drive.stopMotor();
+
+    }
+
+    public void update() {
+      //potentially used to update shuffleboard sensor data
+
+    }
     }
 }
