@@ -14,7 +14,10 @@ package frc.robot;
  */
 public final class Constants {
 
-  //Motor constants
+  //Motor constants 
+  /*
+   Get CANbus ID values for sparkmax controllers
+  */
   public static final int LEFT_FRONT_MOTOR = 0;
   public static final int LEFT_REAR_MOTOR = 1;
   public static final int RIGHT_FRONT_MOTOR = 2;
@@ -28,8 +31,15 @@ public final class Constants {
   //controller - Driver Axis maps
   public static final int DRIVER_JOYSTICK_LEFT_X_AXIS = 0;
   public static final int DRIVER_JOYSTICK_LEFT_Y_AXIS = 1;
+  /*
+  Modified controller - right joystick replaced with potentiometer
+
   public static final int DRIVER_JOYSTICK_RIGHT_X_AXIS = 2;
   public static final int DRIVER_JOYSTICK_RIGHT_Y_AXIS = 3;
+
+  */
+  public static final int DRIVER_ROTATION = 2; //replaces right x-axis
+
 
   //controller - Driver Button maps
   public static final int DRIVER_LEFT = 1;
