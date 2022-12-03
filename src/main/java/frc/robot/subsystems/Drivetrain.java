@@ -31,7 +31,13 @@ import edu.wpi.first.math.kinematics.MecanumDriveOdometry;
 //import edu.wpi.first.math.kinematics.MecanumDriveWheelPositions;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 
+/*
+public class MecanumDriveWheelPositions extends kinematics{
 
+}
+*/
+
+}
 public class Drivetrain extends SubsystemBase {
 
 
@@ -93,8 +99,8 @@ public class Drivetrain extends SubsystemBase {
       rightRearMotorEncoder = (SparkMaxRelativeEncoder) rightRearMotor.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,DriveConstants.kEncoderCPR);
 
 
-      //set distance per pulse for encoders
-     
+
+      //set distance per pulse for encoders     
 
       //Odometry class for tracking robot pose
       //MecanumDriveOdometry odometry = new MecanumDriveOdometry(DriveConstants.kDriveKinematics, gyro.getRotation2d(), initialPoseMeters)
@@ -213,6 +219,33 @@ public class Drivetrain extends SubsystemBase {
     public SparkMaxRelativeEncoder getRightRearEncoder(){
       return rightRearMotorEncoder;
     }
+
+    /**
+    * Gets the current wheel speeds.
+    *
+    * @return the current wheel speeds in a MecanumDriveWheelSpeeds object.
+    */
+    public MecanumDriveWheelSpeeds getCurrentWheelSpeeds() {
+      double leftFrontSpeed = (leftFrontMotorEncoder.getVelocity())*(DriveConstants.kWheelCircumference)/60;
+      double leftRearSpeed = (leftRearMotorEncoder.getVelocity())*(DriveConstants.kWheelCircumference)/60;
+      double rightFrontSpeed = (rightFrontMotorEncoder.getVelocity())*(DriveConstants.kWheelCircumference)/60;
+      double rightRearSpeed = (rightRearMotorEncoder.getVelocity())*(DriveConstants.kWheelCircumference)/60;
+
+      return new MecanumDriveWheelSpeeds(leftFrontSpeed, leftRearSpeed, rightFrontSpeed, rightRearSpeed);
+    }
+
+    /**
+    * Gets the current wheel distance measurements.
+    *
+    * @return the current wheel distance measurements in a MecanumDriveWheelPositions object.
+    */
+    public MecanumDriveWheelPositions getCurrentWheelDistances() {
+      return new MecanumDriveWheelPositions(
+          m_frontLeftEncoder.getDistance(),
+          m_rearLeftEncoder.getDistance(),
+          m_frontRightEncoder.getDistance(),
+          m_rearRightEncoder.getDistance());
+  }
 
     public void stop() {
       drive.stopMotor();
